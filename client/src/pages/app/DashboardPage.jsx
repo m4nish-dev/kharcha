@@ -18,6 +18,7 @@ import {
   mockTransactions,
   mockSavingsGoals,
   mockBills,
+  mockCategories,
 } from '../../data/mockData.js';
 import { formatCurrency } from '../../constants/index.js';
 
@@ -245,89 +246,208 @@ export default function DashboardPage() {
           gap: '1.75rem',
         }}
       >
-        {/* Left: Recent Transactions Table / Rows */}
-        <div className="glass-card" style={{ padding: '1.75rem' }}>
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              marginBottom: '1.25rem',
-            }}
-          >
-            <div>
-              <h3 style={{ fontSize: '1.05rem', fontWeight: 700, color: '#ffffff' }}>
-                Today & Recent Activity
-              </h3>
-              <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>
-                Latest verified entries
-              </span>
-            </div>
-            <Link
-              to="/transactions"
+        {/* Left Column: Recent Transactions + Spending by Category */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+          {/* Recent Activity Card */}
+          <div className="glass-card" style={{ padding: '1.75rem' }}>
+            <div
               style={{
-                fontSize: '0.8rem',
-                color: 'var(--mint)',
-                fontWeight: 600,
                 display: 'flex',
                 alignItems: 'center',
-                gap: '0.25rem',
+                justifyContent: 'space-between',
+                marginBottom: '1.25rem',
               }}
             >
-              <span>View all ({mockTransactions.length})</span>
-              <ArrowRight size={14} />
-            </Link>
-          </div>
-
-          {/* Compact Transaction Rows */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
-            {recentTransactions.map((tx) => (
-              <div
-                key={tx.id}
+              <div>
+                <h3 style={{ fontSize: '1.05rem', fontWeight: 700, color: '#ffffff' }}>
+                  Today & Recent Activity
+                </h3>
+                <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>
+                  Latest verified entries
+                </span>
+              </div>
+              <Link
+                to="/transactions"
                 style={{
+                  fontSize: '0.8rem',
+                  color: 'var(--mint)',
+                  fontWeight: 600,
                   display: 'flex',
                   alignItems: 'center',
-                  justifyContent: 'space-between',
-                  padding: '0.75rem 0.95rem',
-                  borderRadius: 'var(--radius-sm)',
-                  backgroundColor: 'rgba(255, 255, 255, 0.03)',
-                  border: '1px solid var(--border-subtle)',
+                  gap: '0.25rem',
                 }}
               >
-                <div>
-                  <div style={{ fontSize: '0.88rem', fontWeight: 700, color: '#ffffff' }}>
-                    {tx.merchant}
+                <span>View all ({mockTransactions.length})</span>
+                <ArrowRight size={14} />
+              </Link>
+            </div>
+
+            {/* Compact Transaction Rows */}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
+              {recentTransactions.map((tx) => (
+                <div
+                  key={tx.id}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    padding: '0.75rem 0.95rem',
+                    borderRadius: 'var(--radius-sm)',
+                    backgroundColor: 'rgba(255, 255, 255, 0.03)',
+                    border: '1px solid var(--border-subtle)',
+                  }}
+                >
+                  <div>
+                    <div style={{ fontSize: '0.88rem', fontWeight: 700, color: '#ffffff' }}>
+                      {tx.merchant}
+                    </div>
+                    <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>
+                      {tx.dateLabel} • {tx.time} • {tx.subCategory}
+                    </div>
                   </div>
-                  <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>
-                    {tx.dateLabel} • {tx.time} • {tx.subCategory}
+
+                  <div style={{ textAlign: 'right' }}>
+                    <div
+                      style={{
+                        fontFamily: 'var(--font-mono)',
+                        fontWeight: 700,
+                        fontSize: '0.95rem',
+                        color: '#ffffff',
+                      }}
+                    >
+                      -{formatCurrency(tx.amount)}
+                    </div>
+                    <span
+                      style={{
+                        fontSize: '0.68rem',
+                        color: 'var(--mint)',
+                        background: 'rgba(16, 185, 129, 0.1)',
+                        padding: '0.1rem 0.4rem',
+                        borderRadius: 'var(--radius-xs)',
+                      }}
+                    >
+                      {tx.category}
+                    </span>
                   </div>
                 </div>
+              ))}
+            </div>
+          </div>
 
-                <div style={{ textAlign: 'right' }}>
+          {/* Spending by Category Card */}
+          <div className="glass-card" style={{ padding: '1.5rem' }}>
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                marginBottom: '1rem',
+              }}
+            >
+              <div>
+                <h3 style={{ fontSize: '1.05rem', fontWeight: 700, color: '#ffffff' }}>
+                  Spending by Category
+                </h3>
+                <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>
+                  This month's expense distribution
+                </span>
+              </div>
+              <Link
+                to="/insights"
+                style={{
+                  fontSize: '0.8rem',
+                  color: 'var(--mint)',
+                  fontWeight: 600,
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.25rem',
+                }}
+              >
+                <span>Deep dive</span>
+                <ArrowRight size={14} />
+              </Link>
+            </div>
+
+            {/* Multi-segment category bar */}
+            <div
+              style={{
+                height: '8px',
+                borderRadius: '999px',
+                overflow: 'hidden',
+                display: 'flex',
+                marginBottom: '1rem',
+                background: 'rgba(255, 255, 255, 0.05)',
+              }}
+            >
+              {mockCategories.map((cat, i) => (
+                <div
+                  key={i}
+                  style={{ width: `${cat.percentage}%`, background: cat.color }}
+                  title={`${cat.name}: ${cat.percentage}%`}
+                />
+              ))}
+            </div>
+
+            {/* Category chips grid */}
+            <div
+              style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))',
+                gap: '0.75rem',
+              }}
+            >
+              {mockCategories.slice(0, 4).map((cat, i) => (
+                <div
+                  key={i}
+                  style={{
+                    background: 'rgba(255, 255, 255, 0.03)',
+                    border: '1px solid var(--border-subtle)',
+                    borderRadius: 'var(--radius-xs)',
+                    padding: '0.65rem 0.75rem',
+                  }}
+                >
+                  <div
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '0.4rem',
+                      marginBottom: '0.25rem',
+                    }}
+                  >
+                    <span
+                      style={{
+                        width: '7px',
+                        height: '7px',
+                        borderRadius: '50%',
+                        backgroundColor: cat.color,
+                      }}
+                    />
+                    <span
+                      style={{
+                        fontSize: '0.75rem',
+                        color: 'var(--text-secondary)',
+                        fontWeight: 600,
+                      }}
+                    >
+                      {cat.name}
+                    </span>
+                  </div>
                   <div
                     style={{
                       fontFamily: 'var(--font-mono)',
+                      fontSize: '0.92rem',
                       fontWeight: 700,
-                      fontSize: '0.95rem',
                       color: '#ffffff',
                     }}
                   >
-                    -{formatCurrency(tx.amount)}
+                    {formatCurrency(cat.amount)}
                   </div>
-                  <span
-                    style={{
-                      fontSize: '0.68rem',
-                      color: 'var(--mint)',
-                      background: 'rgba(16, 185, 129, 0.1)',
-                      padding: '0.1rem 0.4rem',
-                      borderRadius: 'var(--radius-xs)',
-                    }}
-                  >
-                    {tx.category}
-                  </span>
+                  <div style={{ fontSize: '0.68rem', color: 'var(--text-muted)' }}>
+                    {cat.percentage}% of total
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
 

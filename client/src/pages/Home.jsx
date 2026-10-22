@@ -2,7 +2,7 @@ import React from 'react';
 import BackgroundEffects from '../components/BackgroundEffects.jsx';
 import Navbar from '../components/Navbar.jsx';
 import HeroSection from '../components/HeroSection.jsx';
-import CashflowFlowScene from '../components/3d/CashflowFlowScene.jsx';
+import Storytelling3DSection from '../components/3d/Storytelling3DSection.jsx';
 import DailyOverview from '../components/DailyOverview.jsx';
 import SpendingInsights from '../components/SpendingInsights.jsx';
 import AIAssistantSection from '../components/AIAssistantSection.jsx';
@@ -37,10 +37,8 @@ export default function Home() {
         {/* 1. Dimensional 3D Hero */}
         <HeroSection />
 
-        {/* 1.5 Scroll-Driven Storytelling: From Income to Daily Allowance */}
-        <section style={{ position: 'relative', zIndex: 1, paddingTop: '1rem' }}>
-          <CashflowFlowScene />
-        </section>
+        {/* 1.5 4-Stage 3D Storytelling Sequence: Income, Spending, Understanding, Savings */}
+        <Storytelling3DSection />
 
         {/* 2. Section A: The Daily Allowance Engine (Warm Ivory Contrast) */}
         <DailyOverview />

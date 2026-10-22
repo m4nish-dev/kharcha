@@ -30,13 +30,13 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks: {
-          'three-vendor': ['three'],
+          'three-vendor': ['three', '@react-three/fiber', '@react-three/drei'],
           'recharts-vendor': ['recharts'],
           'react-vendor': ['react', 'react-dom', 'react-router-dom'],
           'motion-vendor': ['motion/react'],
         },
       },
     },
-    chunkSizeWarningLimit: 600,
+    chunkSizeWarningLimit: 1200,
   },
 });

@@ -25,7 +25,7 @@ const navItems = [
   { path: '/insights', label: 'Insights', icon: BarChart3 },
   { path: '/savings', label: 'Savings', icon: PiggyBank },
   { path: '/bills', label: 'Bills & Subscriptions', icon: CalendarClock },
-  { path: '/ai-coach', label: 'AI Coach', icon: Sparkles, badge: 'Llama 3.3' },
+  { path: '/ai-coach', label: 'AI Coach', icon: Sparkles, badge: 'AI' },
   { path: '/settings', label: 'Settings', icon: Settings },
 ];
 

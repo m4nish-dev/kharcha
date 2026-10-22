@@ -108,12 +108,12 @@ export default function HeroSection() {
               </Link>
 
               <a
-                href="#overview"
+                href="#storytelling"
                 className="btn-secondary"
                 style={{ fontSize: '1rem', padding: '0.95rem 1.85rem' }}
               >
                 <Compass size={18} />
-                <span>Explore the experience</span>
+                <span>Explore Kharcha</span>
               </a>
             </div>
 
