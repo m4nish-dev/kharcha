@@ -1,0 +1,24 @@
+{
+  "name": "kharcha-server",
+  "version": "1.0.0",
+  "description": "Kharcha API server — personal finance companion",
+  "type": "module",
+  "main": "src/server.js",
+  "scripts": {
+    "dev": "node --watch src/server.js",
+    "start": "node src/server.js"
+  },
+  "keywords": [
+    "finance",
+    "personal-finance",
+    "kharcha"
+  ],
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "cors": "^2.8.6",
+    "dotenv": "^18.0.8",
+    "express": "^5.3.0",
+    "mongoose": "^9.11.3"
+  }
+}
