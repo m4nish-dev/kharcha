@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Target, Plus, CheckCircle2, Palmtree, Smartphone, ShieldCheck, Sparkles } from 'lucide-react';
 import { mockSavingsGoals } from '../../data/mockData.js';
 import { formatCurrency } from '../../constants/index.js';
+import DimensionalVaultCard from '../../components/3d/DimensionalVaultCard.jsx';
 
 export default function SavingsPage() {
   const [goals, setGoals] = useState(mockSavingsGoals);
@@ -22,59 +23,8 @@ export default function SavingsPage() {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1.75rem' }}>
-      {/* ── TOP STATS CARD ──────────────────────────────────────────── */}
-      <div
-        className="glass-card"
-        style={{
-          padding: '1.75rem 2rem',
-          display: 'flex',
-          flexWrap: 'wrap',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          gap: '1.5rem',
-        }}
-      >
-        <div>
-          <span style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--mint)', letterSpacing: '0.06em', textTransform: 'uppercase' }}>
-            Autonomous Capital Reserve
-          </span>
-          <div
-            style={{
-              fontFamily: 'var(--font-mono)',
-              fontSize: '2.2rem',
-              fontWeight: 800,
-              color: '#ffffff',
-              lineHeight: 1.1,
-              marginTop: '0.35rem',
-            }}
-          >
-            {formatCurrency(totalSaved)}{' '}
-            <span style={{ fontSize: '1rem', color: 'var(--text-muted)', fontWeight: 500 }}>
-              / {formatCurrency(totalTarget)}
-            </span>
-          </div>
-          <span style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>
-            Allocating ₹630/day automatically from your daily allowance pool
-          </span>
-        </div>
-
-        <div
-          style={{
-            background: 'rgba(16, 185, 129, 0.1)',
-            border: '1px solid rgba(16, 185, 129, 0.25)',
-            borderRadius: 'var(--radius-md)',
-            padding: '1rem 1.25rem',
-            textAlign: 'right',
-          }}
-        >
-          <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', textTransform: 'uppercase', fontWeight: 600 }}>
-            Overall Goal Progress
-          </div>
-          <div style={{ fontFamily: 'var(--font-mono)', fontSize: '1.5rem', fontWeight: 800, color: 'var(--mint)' }}>
-            {Math.round((totalSaved / totalTarget) * 100)}%
-          </div>
-        </div>
-      </div>
+      {/* ── 3D DIMENSIONAL VAULT SHOWCASE ───────────────────────────── */}
+      <DimensionalVaultCard totalSaved={totalSaved} totalTarget={totalTarget} />
 
       {/* ── GOALS CARDS GRID ─────────────────────────────────────────── */}
       <div

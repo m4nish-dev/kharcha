@@ -10,6 +10,7 @@ import {
   Clock,
   ArrowUpRight,
 } from 'lucide-react';
+const RupeeCoinsScene = React.lazy(() => import('./3d/RupeeCoinsScene.jsx'));
 
 export default function HeroVisual() {
   const containerRef = useRef(null);
@@ -80,6 +81,24 @@ export default function HeroVisual() {
             pointerEvents: 'none',
           }}
         />
+
+        {/* ── 3D WEBGL RUPEE COINS CLUSTER ───────────────────────────── */}
+        <div
+          style={{
+            position: 'absolute',
+            top: '-110px',
+            right: '-45px',
+            width: '260px',
+            height: '260px',
+            transform: 'translateZ(55px)',
+            pointerEvents: 'none',
+            zIndex: 20,
+          }}
+        >
+          <React.Suspense fallback={<div style={{ width: '100%', height: '100%' }} />}>
+            <RupeeCoinsScene />
+          </React.Suspense>
+        </div>
 
         {/* ── CENTRAL PHYSICAL DAILY BUDGET CARD ──────────────────────── */}
         <div

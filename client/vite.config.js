@@ -26,4 +26,17 @@ export default defineConfig({
       },
     },
   },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'three-vendor': ['three'],
+          'recharts-vendor': ['recharts'],
+          'react-vendor': ['react', 'react-dom', 'react-router-dom'],
+          'motion-vendor': ['motion/react'],
+        },
+      },
+    },
+    chunkSizeWarningLimit: 600,
+  },
 });

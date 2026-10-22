@@ -81,6 +81,31 @@ Regarding "${query}": Keep individual purchases under ₹1,100 to stay comfortab
           gap: '1.25rem',
         }}
       >
+        {/* Transparent Model Status Badge */}
+        <div
+          style={{
+            alignSelf: 'center',
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '0.45rem',
+            padding: '0.35rem 0.85rem',
+            borderRadius: '999px',
+            backgroundColor: 'rgba(255, 255, 255, 0.04)',
+            border: '1px solid rgba(255, 255, 255, 0.08)',
+            fontSize: '0.72rem',
+            color: 'var(--text-muted)',
+          }}
+        >
+          <span
+            style={{
+              width: '6px',
+              height: '6px',
+              borderRadius: '50%',
+              backgroundColor: 'var(--mint)',
+            }}
+          />
+          <span>Offline Financial Rule-Engine (Groq API connects via Express backend)</span>
+        </div>
         {messages.map((msg, i) => {
           const isUser = msg.sender === 'user';
           return (
